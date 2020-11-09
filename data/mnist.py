@@ -19,6 +19,7 @@ def mnist():
         image_size = data_size[n]
         if not os.path.isfile(os.path.join(mnist_path,idx)):
             print(f'there is no file name {idx} in data folder!')
+            return None
         f = gzip.open(os.path.join(mnist_path,idx),'r')
         buf = f.read(image_size * image_size * num_images)
         data = np.frombuffer(buf, dtype=np.uint8).astype(np.float32)
