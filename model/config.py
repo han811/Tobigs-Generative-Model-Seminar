@@ -39,7 +39,7 @@ d_layer3['units'] = 128
 d_layer3['activation'] = 'relu'
 
 d_layer4 = dict()
-d_layer4['units'] = 10
+d_layer4['units'] = 2
 d_layer4['activation'] = 'None'
 
 Dis_param = {}
@@ -52,3 +52,4 @@ Dis_param['d_layer4'] = d_layer4
 param = {}
 param['Gen_param'] = Gen_param
 param['Dis_param'] = Dis_param
+param['latent_size'] = 2
