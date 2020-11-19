@@ -52,4 +52,3 @@ Dis_param['d_layer4'] = d_layer4
 param = {}
 param['Gen_param'] = Gen_param
 param['Dis_param'] = Dis_param
-param['latent_size'] = 2

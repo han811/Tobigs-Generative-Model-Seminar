@@ -45,8 +45,8 @@ def generator_loss(generated_img):
     cross entropy for true img
 '''
 def discriminator_loss(generated_img, true_img):
-    return tf.keras.losses.categorical_crossentropy(from_logits=True)(tf.zeros_like(generated_img),generated_img)\
-        + tf.keras.losses.categorical_crossentropy(from_logits=True)(tf.ones_like(true_img),true_img)
+    return tf.keras.losses.BinaryCrossentropy(from_logits=True)(tf.zeros_like(generated_img),generated_img)\
+        + tf.keras.losses.BinaryCrossentropy(from_logits=True)(tf.ones_like(true_img),true_img)
 
 
 '''
@@ -57,7 +57,7 @@ if __name__=='__main__':
     gen = Generator()
     dis = Discriminator()
     
-    gen_input = tf.keras.Input(shape=(param['latent_size']))
+    gen_input = tf.keras.Input(shape=(64))
     dis_input = tf.keras.Input(shape=(28,28,1))
     
     gen_model = tf.keras.Model(inputs=gen_input,outputs=gen(gen_input))

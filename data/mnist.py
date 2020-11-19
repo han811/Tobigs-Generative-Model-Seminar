@@ -5,7 +5,7 @@ import gzip
 
 import numpy as np
 
-def mnist():
+def mnist(shuffle=False):
     image_size = 28
     file_names = ['train-images-idx3-ubyte.gz','train-labels-idx1-ubyte.gz','t10k-images-idx3-ubyte.gz','t10k-labels-idx1-ubyte.gz']
     nums_list = [60000,60000,10000,10000]
@@ -27,7 +27,15 @@ def mnist():
             return_data[n] = data.reshape(num_images, image_size, image_size, 1)
         else:
             return_data[n] = data.reshape(num_images)
-    
+    if shuffle:
+        s_train = np.arange(return_data[0].shape[0])
+        np.random.shuffle(s_train)
+        s_test = np.arange(return_data[2].shape[0])
+        np.random.shuffle(s_test)
+        return_data[0] = return_data[0][s_train]
+        return_data[1] = return_data[1][s_train]
+        return_data[2] = return_data[2][s_test]
+        return_data[3] = return_data[3][s_test]
     return return_data[0],return_data[1],return_data[2],return_data[3]
     
 if __name__ == "__main__":
